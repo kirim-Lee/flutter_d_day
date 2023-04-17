@@ -8,6 +8,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  DateTime firstDay = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,20 +18,37 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _DDay(),
+          _DDay(
+            firstDay: firstDay,
+            onHeartPressed: onHeartPressed,
+          ),
           _CoupleImage()
         ],
       )),
     );
   }
+
+  void onHeartPressed () {
+    print('클릭');
+  }
 }
 
 // 디데이 계산 위젯
 class _DDay extends StatelessWidget {
+  final GestureTapCallback onHeartPressed;
+  final DateTime firstDay;
+
+  const _DDay({
+    required this.onHeartPressed,
+    required this.firstDay
+  });
+
   @override
   Widget build(BuildContext context) {
     SizedBox gap = const SizedBox(height:16);
+
     final TextTheme textTheme = Theme.of(context).textTheme;
+    final DateTime now = DateTime.now();
 
     return Column(
       children: [
@@ -38,15 +57,15 @@ class _DDay extends StatelessWidget {
         gap,
         Text("우리 처음 만난 날", style: textTheme.bodyLarge,),
         gap,
-        Text("2021.11.23", style: textTheme.bodyMedium,),
+        Text("${firstDay.year}.${firstDay.month}.${firstDay.day}", style: textTheme.bodyMedium,),
         gap,
         IconButton(
             iconSize: 60,
-            onPressed: () {},
+            onPressed: onHeartPressed,
             icon: const Icon(Icons.favorite, color: Colors.red)
         ),
         gap,
-        Text("D+365", style: textTheme.displayMedium)
+        Text("D+${now.difference(firstDay).inDays + 1}", style: textTheme.displayMedium)
       ],
     );
   }
