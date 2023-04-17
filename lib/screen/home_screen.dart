@@ -21,22 +21,27 @@ class HomeScreen extends StatelessWidget {
 
 // 디데이 계산 위젯
 class _DDay extends StatelessWidget {
-  SizedBox gap = const SizedBox(height:16);
-
   @override
   Widget build(BuildContext context) {
+    SizedBox gap = const SizedBox(height:16);
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Column(
       children: [
         gap,
-        Text("U & I"),
+        Text("U & I", style: textTheme.displayLarge,),
         gap,
-        Text("우리 처음 만난 날"),
+        Text("우리 처음 만난 날", style: textTheme.bodyLarge,),
         gap,
-        Text("2021.11.23"),
+        Text("2021.11.23", style: textTheme.bodyMedium,),
         gap,
-        IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+        IconButton(
+            iconSize: 60,
+            onPressed: () {},
+            icon: const Icon(Icons.favorite, color: Colors.red)
+        ),
         gap,
-        Text("D+365")
+        Text("D+365", style: textTheme.displayMedium)
       ],
     );
   }
@@ -46,11 +51,13 @@ class _DDay extends StatelessWidget {
 class _CoupleImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Image.asset(
-          "asset/img/middle_img.png",
-          height: MediaQuery.of(context).size.height / 2
-      ),
+    return Expanded(
+        child: Center(
+          child: Image.asset(
+              "asset/img/middle_img.png",
+              height: MediaQuery.of(context).size.height / 2
+          ),
+        ),
     );
   }
 }
