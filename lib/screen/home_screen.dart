@@ -29,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onHeartPressed () {
-    print('클릭');
+    setState(() {
+      firstDay = firstDay.subtract(const Duration(days: 1));
+    });
   }
 }
 
