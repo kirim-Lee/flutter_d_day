@@ -21,9 +21,24 @@ class HomeScreen extends StatelessWidget {
 
 // 디데이 계산 위젯
 class _DDay extends StatelessWidget {
+  SizedBox gap = const SizedBox(height:16);
+
   @override
   Widget build(BuildContext context) {
-    return const Text('DDay Widget');
+    return Column(
+      children: [
+        gap,
+        Text("U & I"),
+        gap,
+        Text("우리 처음 만난 날"),
+        gap,
+        Text("2021.11.23"),
+        gap,
+        IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+        gap,
+        Text("D+365")
+      ],
+    );
   }
 }
 
